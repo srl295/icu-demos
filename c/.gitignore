@@ -1,0 +1,12 @@
+autom4te.cache
+aclocal.m4
+config.log
+config.status
+configure
+icuhello
+Makefile
+icufacts
+res/out
+hellomsg
+hellores
+icuhelloworld

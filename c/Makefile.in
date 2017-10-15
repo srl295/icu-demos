@@ -1,0 +1,34 @@
+ICU_LIBS=@ICU_LIBS@
+ICU_CFLAGS=@ICU_CFLAGS@
+
+LDFLAGS+=$(ICU_LIBS)
+CFLAGS+=$(ICU_CFLAGS)
+CXXFLAGS+=$(ICU_CFLAGS)
+CXXFLAGS+=-std=c++11
+
+# paths for homebrew, others. Override if needed.
+BLDICURES=env PATH=/usr/local/opt/icu4c/bin/:${PATH} ./bldicures.py
+
+PROGS = icuhello icuhelloworld hellomsg hellores
+BUNDS = hellores
+
+all: $(PROGS) $(BUNDS:%=res/out/%.dat)
+
+clean:
+	-rm -rfv *.o *.obj $(PROGS) res/out
+
+check: $(PROGS)
+	@for prog in $(PROGS); do echo '*' $$prog; ./$$prog || true; done
+
+$(PROGS): %: %.cpp
+
+res/out/%.dat: res/%/*.txt
+	mkdir -p res/out
+	rm -rf res/out/$*
+	$(BLDICURES) -d res/out/$* -f res/$*/ -n $* -m archive
+	cp res/out/$*/$*.dat $@
+
+Makefile: Makefile.in config.status
+	$(SHELL) config.status
+
+.PHONY: all clean check
