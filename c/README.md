@@ -1,5 +1,9 @@
 ## Setting up
 
+```shell
+aclocal && autoconf
+```
+
 ### Linux, etc
 
 ```

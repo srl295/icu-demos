@@ -3,10 +3,10 @@ aclocal.m4
 config.log
 config.status
 configure
-icuhello
+/icuhello
 Makefile
-icufacts
-res/out
-hellomsg
-hellores
-icuhelloworld
+/icufacts
+/res/out
+/hellomsg
+/hellores
+/icuhelloworld
