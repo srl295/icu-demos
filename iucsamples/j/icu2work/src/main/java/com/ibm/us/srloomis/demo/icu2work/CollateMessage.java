@@ -11,8 +11,8 @@ import java.util.*;
 
 public class CollateMessage {
     public static void main(String args[]) {
-        final Locale locale = Locale.getDefault();
-        ResourceBundle rb = ResourceBundle.getBundle(GoodMessage.class.getName());
+        final Locale locale =  Locale.forLanguageTag("es");  //  Locale.getDefault();
+        ResourceBundle rb = ResourceBundle.getBundle(GoodMessage.class.getName(), locale);
         String popmsg = rb.getString("population");
         System.out.println("Message: " + popmsg);
 
